@@ -15,7 +15,7 @@ class CreateMealChoicesTable extends Migration
     {
         Schema::create('meal_choices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
+            $table->foreignId('s_id')->constrained('student','id');
             $table->foreignId('option_id')->constrained('meal_options','id');
             $table->timestamp('date');
         });

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class meal_choices extends Model
 {
@@ -20,13 +21,13 @@ class meal_choices extends Model
     ];
 
 
-    public function option()
+    public function meal_option(): BelongsTo
     {
-       return $this->belongsTo(meal_option::class);
+        return $this->belongsTo(meal_option::class);
     }
 
-    public function users()
+    public function users(): BelongsTo
     {
-       return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

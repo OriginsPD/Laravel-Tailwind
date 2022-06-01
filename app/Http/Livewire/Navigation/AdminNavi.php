@@ -8,6 +8,7 @@ class AdminNavi extends Component
 {
     public function render()
     {
-        return view('livewire.navigation.admin-navi');
+        return view('livewire.navigation.admin-navi')
+            ->extends('layouts.admin');
     }
 }

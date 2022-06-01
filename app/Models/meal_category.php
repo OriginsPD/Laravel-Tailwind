@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class meal_category extends Model
 {
@@ -17,8 +18,8 @@ class meal_category extends Model
         'category_nm',
     ];
 
-    public function Meal_options()
+    public function meal_option(): HasMany
     {
-        $this->hasMany(meal_option::class,'category_id','id');
+       return $this->hasMany(meal_option::class);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,8 +18,9 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'is_admin',
         'password',
     ];
 
@@ -29,6 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'is_admin',
         'password',
         'remember_token',
     ];
@@ -41,4 +43,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setpasswordAttribute($value): void
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function choices(): HasMany
+    {
+        return $this->hasMany(meal_choices::class);
+    }
+
 }

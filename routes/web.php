@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Admin\AdminIndex;
+use App\Http\Livewire\Admin\Meals;
+use App\Http\Livewire\Home\LandingPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', LandingPage::class)->name('home');
+Route::get('/Admin', AdminIndex::class)->name('admin.dashboard');
+Route::get('/Admin/Meals', Meals::class)->name('admin.meals');

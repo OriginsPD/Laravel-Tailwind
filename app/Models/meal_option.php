@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class meal_option extends Model
 {
     use HasFactory;
+
+    protected $table = 'meal_options';
 
     public $timestamps = false;
 
@@ -18,13 +21,13 @@ class meal_option extends Model
         'category_id',
     ];
 
-    public function category()
+    public function meal_category(): BelongsTo
     {
         return $this->belongsTo(meal_category::class);
     }
 
-    public function choice()
+    public function meal_choices(): BelongsTo
     {
-        return $this->belongsTo(meal_choices::class,'option_id','option_id');
+        return $this->belongsTo(meal_choices::class);
     }
 }
